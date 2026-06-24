@@ -1,0 +1,772 @@
+{
+    "mouse - contrasts - matrix": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.pydeseq2.results.tsv:md5,6f32a71452d846e96253781f3010ccbb"
+                ],
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_sample_number",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": "sample_number"
+                    },
+                    "treatment_mCherry_hND6_sample_number.pydeseq2.results.tsv:md5,fdd023d3d5ec22cc731caf2e84fadd6b"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.pydeseq2.sizefactors.tsv:md5,43eaa4bf1118b39f77e1460d670173cc"
+                ],
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_sample_number",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": "sample_number"
+                    },
+                    "treatment_mCherry_hND6_sample_number.pydeseq2.sizefactors.tsv:md5,43eaa4bf1118b39f77e1460d670173cc"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.normalised_counts.tsv:md5,46ab7200c626649ab6256ed797ef5071"
+                ],
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_sample_number",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": "sample_number"
+                    },
+                    "treatment_mCherry_hND6_sample_number.normalised_counts.tsv:md5,46ab7200c626649ab6256ed797ef5071"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.vst.tsv:md5,2f77518e4345e9d1cd5ecdd3836cb7cb"
+                ],
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_sample_number",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": "sample_number"
+                    },
+                    "treatment_mCherry_hND6_sample_number.vst.tsv:md5,2f77518e4345e9d1cd5ecdd3836cb7cb"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.pydeseq2.model.txt:md5,845712a79110bcac2bcf3c68179dde39"
+                ],
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_sample_number",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": "sample_number"
+                    },
+                    "treatment_mCherry_hND6_sample_number.pydeseq2.model.txt:md5,da285c3aec7186a3b4e092035e4ec858"
+                ]
+            ],
+            [
+                "versions.yml:md5,71af5b7c85ff124058385ced412d5c66",
+                "versions.yml:md5,71af5b7c85ff124058385ced412d5c66"
+            ],
+            "treatment_mCherry_hND6_.pydeseq2.dispersion.png",
+            "treatment_mCherry_hND6_.pydeseq2.dispersion.pdf",
+            "treatment_mCherry_hND6_.pydeseq2.dds.h5ad"
+        ],
+        "timestamp": "2026-06-23T13:55:35.237428",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.2"
+        }
+    },
+    "mouse - contrasts - matrix - exclude samples": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.pydeseq2.results.tsv:md5,bcc678a622736ab675bf265120ee38b9"
+                ],
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_sample_number",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": "sample_number"
+                    },
+                    "treatment_mCherry_hND6_sample_number.pydeseq2.results.tsv:md5,e69c56e91ef11625dd6bf6634a110f25"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.pydeseq2.sizefactors.tsv:md5,ef03e5f2d3a16367cfa4c0fa537d955a"
+                ],
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_sample_number",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": "sample_number"
+                    },
+                    "treatment_mCherry_hND6_sample_number.pydeseq2.sizefactors.tsv:md5,ef03e5f2d3a16367cfa4c0fa537d955a"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.normalised_counts.tsv:md5,90327e9bfc3bbafb96e11b13b3cd5e19"
+                ],
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_sample_number",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": "sample_number"
+                    },
+                    "treatment_mCherry_hND6_sample_number.normalised_counts.tsv:md5,90327e9bfc3bbafb96e11b13b3cd5e19"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.vst.tsv:md5,c40ead85103bd6a650d7a4691d5fe8a2"
+                ],
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_sample_number",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": "sample_number"
+                    },
+                    "treatment_mCherry_hND6_sample_number.vst.tsv:md5,c40ead85103bd6a650d7a4691d5fe8a2"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.pydeseq2.model.txt:md5,845712a79110bcac2bcf3c68179dde39"
+                ],
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_sample_number",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": "sample_number"
+                    },
+                    "treatment_mCherry_hND6_sample_number.pydeseq2.model.txt:md5,da285c3aec7186a3b4e092035e4ec858"
+                ]
+            ],
+            [
+                "versions.yml:md5,71af5b7c85ff124058385ced412d5c66",
+                "versions.yml:md5,71af5b7c85ff124058385ced412d5c66"
+            ],
+            "treatment_mCherry_hND6_.pydeseq2.dispersion.png",
+            "treatment_mCherry_hND6_.pydeseq2.dispersion.pdf",
+            "treatment_mCherry_hND6_.pydeseq2.dds.h5ad"
+        ],
+        "timestamp": "2026-06-23T13:57:14.958775",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.2"
+        }
+    },
+    "mouse - contrasts - matrix - control genes": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.pydeseq2.results.tsv:md5,c0965292b96d33973a0fb8826efe1d2e"
+                ],
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_sample_number",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": "sample_number"
+                    },
+                    "treatment_mCherry_hND6_sample_number.pydeseq2.results.tsv:md5,18760eae4353515f2f748158d5339726"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.pydeseq2.sizefactors.tsv:md5,2abed7b75d492df475bad0c24e469132"
+                ],
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_sample_number",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": "sample_number"
+                    },
+                    "treatment_mCherry_hND6_sample_number.pydeseq2.sizefactors.tsv:md5,2abed7b75d492df475bad0c24e469132"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.normalised_counts.tsv:md5,6f3af146a6f8fbb8f565dd66e79d2cb1"
+                ],
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_sample_number",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": "sample_number"
+                    },
+                    "treatment_mCherry_hND6_sample_number.normalised_counts.tsv:md5,6f3af146a6f8fbb8f565dd66e79d2cb1"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.vst.tsv:md5,70501801bad193bbb65eb3a86b65050d"
+                ],
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_sample_number",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": "sample_number"
+                    },
+                    "treatment_mCherry_hND6_sample_number.vst.tsv:md5,70501801bad193bbb65eb3a86b65050d"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.pydeseq2.model.txt:md5,845712a79110bcac2bcf3c68179dde39"
+                ],
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_sample_number",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": "sample_number"
+                    },
+                    "treatment_mCherry_hND6_sample_number.pydeseq2.model.txt:md5,da285c3aec7186a3b4e092035e4ec858"
+                ]
+            ],
+            [
+                "versions.yml:md5,71af5b7c85ff124058385ced412d5c66",
+                "versions.yml:md5,71af5b7c85ff124058385ced412d5c66"
+            ],
+            "treatment_mCherry_hND6_.pydeseq2.dispersion.png",
+            "treatment_mCherry_hND6_.pydeseq2.dispersion.pdf",
+            "treatment_mCherry_hND6_.pydeseq2.dds.h5ad"
+        ],
+        "timestamp": "2026-06-23T13:56:51.204723",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.2"
+        }
+    },
+    "mouse - contrasts - matrix - csv counts": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.pydeseq2.results.tsv:md5,6f32a71452d846e96253781f3010ccbb"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.pydeseq2.sizefactors.tsv:md5,43eaa4bf1118b39f77e1460d670173cc"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.normalised_counts.tsv:md5,46ab7200c626649ab6256ed797ef5071"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.vst.tsv:md5,2f77518e4345e9d1cd5ecdd3836cb7cb"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.pydeseq2.model.txt:md5,845712a79110bcac2bcf3c68179dde39"
+                ]
+            ],
+            [
+                "versions.yml:md5,71af5b7c85ff124058385ced412d5c66"
+            ],
+            "treatment_mCherry_hND6_.pydeseq2.dispersion.png",
+            "treatment_mCherry_hND6_.pydeseq2.dispersion.pdf",
+            "treatment_mCherry_hND6_.pydeseq2.dds.h5ad"
+        ],
+        "timestamp": "2026-06-23T13:57:24.091034",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.2"
+        }
+    },
+    "mouse - contrasts - matrix - subset to contrast": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.pydeseq2.results.tsv:md5,6f32a71452d846e96253781f3010ccbb"
+                ],
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_sample_number",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": "sample_number"
+                    },
+                    "treatment_mCherry_hND6_sample_number.pydeseq2.results.tsv:md5,fdd023d3d5ec22cc731caf2e84fadd6b"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.pydeseq2.sizefactors.tsv:md5,43eaa4bf1118b39f77e1460d670173cc"
+                ],
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_sample_number",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": "sample_number"
+                    },
+                    "treatment_mCherry_hND6_sample_number.pydeseq2.sizefactors.tsv:md5,43eaa4bf1118b39f77e1460d670173cc"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.normalised_counts.tsv:md5,46ab7200c626649ab6256ed797ef5071"
+                ],
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_sample_number",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": "sample_number"
+                    },
+                    "treatment_mCherry_hND6_sample_number.normalised_counts.tsv:md5,46ab7200c626649ab6256ed797ef5071"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.vst.tsv:md5,2f77518e4345e9d1cd5ecdd3836cb7cb"
+                ],
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_sample_number",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": "sample_number"
+                    },
+                    "treatment_mCherry_hND6_sample_number.vst.tsv:md5,2f77518e4345e9d1cd5ecdd3836cb7cb"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.pydeseq2.model.txt:md5,845712a79110bcac2bcf3c68179dde39"
+                ],
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_sample_number",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": "sample_number"
+                    },
+                    "treatment_mCherry_hND6_sample_number.pydeseq2.model.txt:md5,da285c3aec7186a3b4e092035e4ec858"
+                ]
+            ],
+            [
+                "versions.yml:md5,71af5b7c85ff124058385ced412d5c66",
+                "versions.yml:md5,71af5b7c85ff124058385ced412d5c66"
+            ],
+            "treatment_mCherry_hND6_.pydeseq2.dispersion.png",
+            "treatment_mCherry_hND6_.pydeseq2.dispersion.pdf",
+            "treatment_mCherry_hND6_.pydeseq2.dds.h5ad"
+        ],
+        "timestamp": "2026-06-23T13:57:03.143845",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.2"
+        }
+    },
+    "RNAseq - Feature Counts - formula coefficient": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "genotype_WT_vs_baseline",
+                        "formula": "~ genotype",
+                        "comparison": "genotype[T.WT]"
+                    },
+                    "genotype_WT_vs_baseline.pydeseq2.results.tsv:md5,9ad5aa38169ba61f6a269998c93e404e"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "genotype_WT_vs_baseline",
+                        "formula": "~ genotype",
+                        "comparison": "genotype[T.WT]"
+                    },
+                    "genotype_WT_vs_baseline.pydeseq2.sizefactors.tsv:md5,ced50d358eb6716a3b84b6e2d4bf7c26"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "genotype_WT_vs_baseline",
+                        "formula": "~ genotype",
+                        "comparison": "genotype[T.WT]"
+                    },
+                    "genotype_WT_vs_baseline.normalised_counts.tsv:md5,5efc9c2f22ce89a5f39a5694208cb7b3"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "genotype_WT_vs_baseline",
+                        "formula": "~ genotype",
+                        "comparison": "genotype[T.WT]"
+                    },
+                    "genotype_WT_vs_baseline.vst.tsv:md5,eae57d3c9a08308d3a0ba31f6de87aec"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "genotype_WT_vs_baseline",
+                        "formula": "~ genotype",
+                        "comparison": "genotype[T.WT]"
+                    },
+                    "genotype_WT_vs_baseline.pydeseq2.model.txt:md5,320c950ddf28de0e06839c55b5d62165"
+                ]
+            ],
+            [
+                "versions.yml:md5,71af5b7c85ff124058385ced412d5c66"
+            ],
+            "genotype_WT_vs_baseline.pydeseq2.dispersion.png",
+            "genotype_WT_vs_baseline.pydeseq2.dispersion.pdf",
+            "genotype_WT_vs_baseline.pydeseq2.dds.h5ad"
+        ],
+        "timestamp": "2026-06-23T13:56:38.190672",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.2"
+        }
+    },
+    "mouse - contrasts - matrix - stub": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.pydeseq2.results.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_sample_number",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": "sample_number"
+                    },
+                    "treatment_mCherry_hND6_sample_number.pydeseq2.results.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.pydeseq2.sizefactors.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_sample_number",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": "sample_number"
+                    },
+                    "treatment_mCherry_hND6_sample_number.pydeseq2.sizefactors.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.normalised_counts.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_sample_number",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": "sample_number"
+                    },
+                    "treatment_mCherry_hND6_sample_number.normalised_counts.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.vst.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_sample_number",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": "sample_number"
+                    },
+                    "treatment_mCherry_hND6_sample_number.vst.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": ""
+                    },
+                    "treatment_mCherry_hND6_.pydeseq2.model.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                [
+                    {
+                        "id": "treatment_mCherry_hND6_sample_number",
+                        "variable": "treatment",
+                        "reference": "mCherry",
+                        "target": "hND6",
+                        "blocking": "sample_number"
+                    },
+                    "treatment_mCherry_hND6_sample_number.pydeseq2.model.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            ],
+            [
+                "versions.yml:md5,9c833b9289a93ecffd56a1a1c5a3bf69",
+                "versions.yml:md5,9c833b9289a93ecffd56a1a1c5a3bf69"
+            ],
+            "treatment_mCherry_hND6_.pydeseq2.dispersion.png",
+            "treatment_mCherry_hND6_.pydeseq2.dispersion.pdf",
+            "treatment_mCherry_hND6_.pydeseq2.dds.h5ad"
+        ],
+        "timestamp": "2026-06-23T13:57:30.239569",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.2"
+        }
+    }
+}

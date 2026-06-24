@@ -1,0 +1,196 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "deseq2_pydge"
+description: |
+  Runs differential expression analysis with PyDESeq2. This module preserves the
+  main input shape of deseq2/differential, but only emits honest PyDESeq2-native
+  outputs. R-only DESeq2 features such as rlog, ASHR shrinkage, transcript-length
+  offsets, RDS objects, non-Wald tests, use_t, non-BH p-value adjustment,
+  unsupported fit types, and vst_nsub are reported as unsupported rather than
+  faked. Results are unshrunken unless a future PyDESeq2-backed shrinkage option
+  is explicitly implemented. If PyDESeq2 falls back from the requested dispersion
+  fit type, the module records the actual fit type and can fail when configured
+  with --dispersion_fallback_policy error.
+keywords:
+  - differential
+  - expression
+  - rna-seq
+  - deseq2
+  - pydeseq2
+tools:
+  - "pydeseq2":
+      description: "A Python implementation of the DESeq2 differential expression workflow."
+      homepage: "https://github.com/owkin/PyDESeq2"
+      documentation: "https://pydeseq2.readthedocs.io/"
+      tool_dev_url: "https://github.com/owkin/PyDESeq2"
+      licence:
+        - "MIT"
+      identifier: biotools:pydeseq2
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing contrast information. This can be used at the
+          workflow level to pass optional parameters to the module, e.g.
+          [ id:'contrast1', blocking:'patient' ] passed in as ext.args like:
+          '--blocking_variable $meta.blocking'.
+    - contrast_variable:
+        type: string
+        description: |
+          The column in the sample sheet that should be used to define groups for
+          comparison when no formula is provided.
+    - reference:
+        type: string
+        description: |
+          The value within the contrast_variable column of the sample sheet that
+          should be used as the reference level.
+    - target:
+        type: string
+        description: |
+          The value within the contrast_variable column of the sample sheet that
+          should be compared against the reference level.
+    - formula:
+        type: string
+        description: |
+          Optional formulaic-compatible model string, e.g. '~ treatment'. Formula
+          mode requires comparison to match a PyDESeq2 design-matrix coefficient.
+    - comparison:
+        type: string
+        description: |
+          Optional comparison coefficient for formula mode. R coefficient names and
+          limma-style expressions are unsupported unless they exactly match the
+          PyDESeq2 design matrix.
+  - - meta2:
+        type: map
+        description: Groovy map containing study-wide metadata related to the sample sheet and matrix.
+    - samplesheet:
+        type: file
+        description: CSV or TSV format sample sheet with sample metadata.
+        ontologies: []
+    - counts:
+        type: file
+        description: Raw TSV or CSV format expression matrix with genes by row and samples by column.
+        ontologies: []
+  - - meta3:
+        type: map
+        description: |
+          Meta map describing control genes, e.g. [id: 'ERCC'].
+        ontologies: []
+    - control_genes_file:
+        type: file
+        description: Optional text file listing control genes, one per line.
+        ontologies: []
+  - - meta4:
+        type: map
+        description: Groovy map retained for input compatibility with deseq2/differential.
+    - transcript_lengths_file:
+        type: file
+        description: |
+          Unsupported compatibility input. Supplying transcript lengths causes the
+          module to fail clearly because PyDESeq2 does not provide public R DESeq2
+          avgTxLength-to-normalizationFactors parity.
+        ontologies: []
+output:
+  results:
+    - - meta:
+          type: map
+          description: Groovy Map containing contrast information, same as input meta.
+      - "*.pydeseq2.results.tsv":
+          type: file
+          description: TSV-format differential expression table from PyDESeq2.
+          pattern: "*.pydeseq2.results.tsv"
+          ontologies:
+            - edam: "http://edamontology.org/format_3475"
+  dispersion_plot_png:
+    - - meta:
+          type: map
+          description: Groovy Map containing contrast information, same as input meta.
+      - "*.pydeseq2.dispersion.png":
+          type: file
+          description: PyDESeq2 dispersion plot in PNG format.
+          pattern: "*.pydeseq2.dispersion.png"
+          ontologies:
+            - edam: "http://edamontology.org/format_3603"
+  dispersion_plot_pdf:
+    - - meta:
+          type: map
+          description: Groovy Map containing contrast information, same as input meta.
+      - "*.pydeseq2.dispersion.pdf":
+          type: file
+          description: PyDESeq2 dispersion plot in PDF format.
+          pattern: "*.pydeseq2.dispersion.pdf"
+          ontologies:
+            - edam: "http://edamontology.org/format_3508"
+  h5ad:
+    - - meta:
+          type: map
+          description: Groovy Map containing contrast information, same as input meta.
+      - "*.pydeseq2.dds.h5ad":
+          type: file
+          description: Python-native AnnData serialization of the fitted PyDESeq2 object.
+          pattern: "*.pydeseq2.dds.h5ad"
+          ontologies:
+            - edam: "http://edamontology.org/format_3590"
+  size_factors:
+    - - meta:
+          type: map
+          description: Groovy Map containing contrast information, same as input meta.
+      - "*.pydeseq2.sizefactors.tsv":
+          type: file
+          description: TSV table containing PyDESeq2 size factors.
+          pattern: "*.pydeseq2.sizefactors.tsv"
+          ontologies:
+            - edam: "http://edamontology.org/format_3475"
+  normalised_counts:
+    - - meta:
+          type: map
+          description: Groovy Map containing contrast information, same as input meta.
+      - "*.normalised_counts.tsv":
+          type: file
+          description: TSV-format counts matrix normalized to PyDESeq2 size factors.
+          pattern: "*.normalised_counts.tsv"
+          ontologies:
+            - edam: "http://edamontology.org/format_3475"
+  vst_counts:
+    - - meta:
+          type: map
+          description: Groovy Map containing contrast information, same as input meta.
+      - "*.vst.tsv":
+          type: file
+          description: Optional TSV-format PyDESeq2 VST matrix. rlog is unsupported.
+          pattern: "*.vst.tsv"
+          ontologies:
+            - edam: "http://edamontology.org/format_3475"
+  model:
+    - - meta:
+          type: map
+          description: Groovy Map containing contrast information, same as input meta.
+      - "*.pydeseq2.model.txt":
+          type: file
+          description: TXT-format PyDESeq2 model formula.
+          pattern: "*.pydeseq2.model.txt"
+          ontologies:
+            - edam: "http://edamontology.org/format_2330"
+  session_info:
+    - - meta:
+          type: map
+          description: Groovy Map containing contrast information, same as input meta.
+      - "*.Python_sessionInfo.log":
+          type: file
+          description: Python runtime and package session information.
+          pattern: "*.Python_sessionInfo.log"
+          ontologies: []
+  versions:
+    - versions.yml:
+        type: file
+        description: YAML file containing versions of tools used in the module.
+        ontologies:
+          - edam: "http://edamontology.org/format_3750"
+topics:
+  versions:
+    - versions.yml:
+        type: string
+        description: The name of the process.
+authors:
+  - "@gitbenlewis"
+maintainers:
+  - "@gitbenlewis"
