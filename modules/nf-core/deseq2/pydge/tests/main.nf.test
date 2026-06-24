@@ -57,6 +57,11 @@ nextflow_process {
                 { assert file(process.out.h5ad[0][1]).name.endsWith('.pydeseq2.dds.h5ad') },
                 { assert path(process.out.model[0][1]).text.startsWith('~') },
                 { assert path(process.out.session_info[0][1]).text.contains('PyDESeq2 session information') },
+                { assert path(process.out.session_info[0][1]).text.contains('r_style_parametric_dispersion_fit') },
+                { assert path(process.out.session_info[0][1]).text.contains('parametric_dispersion_min_disp_multiplier') },
+                { assert path(process.out.session_info[0][1]).text.contains('parametric_dispersion_genes_before_r_style_filter') },
+                { assert path(process.out.session_info[0][1]).text.contains('parametric_dispersion_genes_after_r_style_filter') },
+                { assert path(process.out.session_info[0][1]).text.contains('transcript_length_normalization_enabled') },
                 { assert path(process.out.versions[0]).yaml }
             )
         }
@@ -357,7 +362,7 @@ nextflow_process {
         }
     }
 
-    test("unsupported transcript lengths fail clearly") {
+    test("mouse - contrasts - matrix - transcript lengths") {
         config './pydge_matrix.config'
 
         when {
@@ -376,8 +381,13 @@ nextflow_process {
         }
 
         then {
-            assert process.failed
-            assert process.errorReport.contains('transcript length correction')
+            assertAll(
+                { assert process.success },
+                { assert path(process.out.normalization_factors[0][1]).exists() },
+                { assert path(process.out.session_info[0][1]).text.contains('transcript_length_normalization_enabled') },
+                { assert path(process.out.session_info[0][1]).text.contains('normalization_factor_shape') },
+                { assert path(process.out.session_info[0][1]).text.contains('sample_size_factor_summary') }
+            )
         }
     }
 

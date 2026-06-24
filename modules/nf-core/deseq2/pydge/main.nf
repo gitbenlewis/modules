@@ -19,6 +19,7 @@ process DESEQ2_PYDGE {
     tuple val(meta), path("*.pydeseq2.dispersion.pdf")     , emit: dispersion_plot_pdf
     tuple val(meta), path("*.pydeseq2.dds.h5ad")           , emit: h5ad
     tuple val(meta), path("*.pydeseq2.sizefactors.tsv")    , emit: size_factors
+    tuple val(meta), path("*.pydeseq2.normalization_factors.tsv"), optional: true, emit: normalization_factors
     tuple val(meta), path("*.normalised_counts.tsv")       , emit: normalised_counts
     tuple val(meta), path("*.vst.tsv")                     , optional: true, emit: vst_counts
     tuple val(meta), path("*.pydeseq2.model.txt")          , emit: model
@@ -41,6 +42,7 @@ process DESEQ2_PYDGE {
     touch ${prefix}.pydeseq2.dispersion.pdf
     touch ${prefix}.pydeseq2.dds.h5ad
     touch ${prefix}.pydeseq2.sizefactors.tsv
+    touch ${prefix}.pydeseq2.normalization_factors.tsv
     touch ${prefix}.normalised_counts.tsv
     touch ${prefix}.vst.tsv
     touch ${prefix}.pydeseq2.model.txt

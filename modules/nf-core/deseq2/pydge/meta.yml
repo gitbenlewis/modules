@@ -3,13 +3,17 @@ name: "deseq2_pydge"
 description: |
   Runs differential expression analysis with PyDESeq2. This module preserves the
   main input shape of deseq2/differential, but only emits honest PyDESeq2-native
-  outputs. R-only DESeq2 features such as rlog, ASHR shrinkage, transcript-length
-  offsets, RDS objects, non-Wald tests, use_t, non-BH p-value adjustment,
-  unsupported fit types, and vst_nsub are reported as unsupported rather than
-  faked. Results are unshrunken unless a future PyDESeq2-backed shrinkage option
-  is explicitly implemented. If PyDESeq2 falls back from the requested dispersion
-  fit type, the module records the actual fit type and can fail when configured
-  with --dispersion_fallback_policy error.
+  outputs. R-only DESeq2 features such as rlog, ASHR shrinkage, RDS objects,
+  non-Wald tests, use_t, non-BH p-value adjustment, unsupported fit types, and
+  vst_nsub are reported as unsupported rather than faked. Transcript-length
+  matrices are converted to R DESeq2-style gene-by-sample normalization factors,
+  not length-scaled counts. Results are unshrunken unless a future PyDESeq2-backed
+  shrinkage option is explicitly implemented. If PyDESeq2 falls back from the
+  requested dispersion fit type, the module records the actual fit type and can
+  fail when configured with --dispersion_fallback_policy error. Parametric
+  dispersion fitting applies an R DESeq2-style dispGeneEst > 100 * minDisp
+  prefilter by default for nf-core parity; set --r_style_parametric_dispersion_fit
+  false to use PyDESeq2's native trend-fitting behavior.
 keywords:
   - differential
   - expression
@@ -85,9 +89,9 @@ input:
     - transcript_lengths_file:
         type: file
         description: |
-          Unsupported compatibility input. Supplying transcript lengths causes the
-          module to fail clearly because PyDESeq2 does not provide public R DESeq2
-          avgTxLength-to-normalizationFactors parity.
+          Optional gene-by-sample transcript/gene length matrix. When supplied, the
+          module builds R DESeq2-style normalization factors and uses them during
+          dispersion, LFC, Cook's distance, and outlier-refit fitting.
         ontologies: []
 output:
   results:
@@ -138,6 +142,16 @@ output:
           type: file
           description: TSV table containing PyDESeq2 size factors.
           pattern: "*.pydeseq2.sizefactors.tsv"
+          ontologies:
+            - edam: "http://edamontology.org/format_3475"
+  normalization_factors:
+    - - meta:
+          type: map
+          description: Groovy Map containing contrast information, same as input meta.
+      - "*.pydeseq2.normalization_factors.tsv":
+          type: file
+          description: Optional TSV table containing gene-by-sample normalization factors.
+          pattern: "*.pydeseq2.normalization_factors.tsv"
           ontologies:
             - edam: "http://edamontology.org/format_3475"
   normalised_counts:
