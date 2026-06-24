@@ -406,11 +406,11 @@ def main():
         np.random.seed(opt["seed"])
 
     count_table, sample_sheet, sample_id_col = prepare_inputs(opt)
-    contrast_variable = make_name(opt["contrast_variable"]) if valid_string(opt["contrast_variable"]) else None
-    count_table, sample_sheet = apply_sample_filters(count_table, sample_sheet, sample_id_col, opt, contrast_variable)
     count_table, features_before_filter, features_after_filter = apply_feature_filter(count_table, opt)
     opt["features_before_filter"] = features_before_filter
     opt["features_after_filter"] = features_after_filter
+    contrast_variable = make_name(opt["contrast_variable"]) if valid_string(opt["contrast_variable"]) else None
+    count_table, sample_sheet = apply_sample_filters(count_table, sample_sheet, sample_id_col, opt, contrast_variable)
 
     model, contrast = build_model_and_contrast(opt, sample_sheet)
 
