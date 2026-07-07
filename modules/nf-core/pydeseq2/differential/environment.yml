@@ -5,5 +5,5 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - conda-forge::python=3.11
   - bioconda::pydeseq2=0.5.4
+  - conda-forge::python=3.11

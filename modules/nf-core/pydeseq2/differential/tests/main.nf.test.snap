@@ -112,14 +112,14 @@
                 ]
             ],
             [
-                "versions.yml:md5,71af5b7c85ff124058385ced412d5c66",
-                "versions.yml:md5,71af5b7c85ff124058385ced412d5c66"
+                "versions.yml:md5,8a7315a3a86f94037c477b992b190d5d",
+                "versions.yml:md5,8a7315a3a86f94037c477b992b190d5d"
             ],
             "treatment_mCherry_hND6_.pydeseq2.dispersion.png",
             "treatment_mCherry_hND6_.pydeseq2.dispersion.pdf",
             "treatment_mCherry_hND6_.pydeseq2.dds.h5ad"
         ],
-        "timestamp": "2026-06-23T13:55:35.237428",
+        "timestamp": "2026-07-06T18:45:42.608612",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.2"
@@ -136,7 +136,7 @@
                         "target": "hND6",
                         "blocking": ""
                     },
-                    "treatment_mCherry_hND6_.pydeseq2.results.tsv:md5,bcc678a622736ab675bf265120ee38b9"
+                    "treatment_mCherry_hND6_.pydeseq2.results.tsv:md5,23f46415d9adaf5c70e29feca9557061"
                 ],
                 [
                     {
@@ -146,7 +146,7 @@
                         "target": "hND6",
                         "blocking": "sample_number"
                     },
-                    "treatment_mCherry_hND6_sample_number.pydeseq2.results.tsv:md5,e69c56e91ef11625dd6bf6634a110f25"
+                    "treatment_mCherry_hND6_sample_number.pydeseq2.results.tsv:md5,1f2109bfcd1b582242c8540674064c5a"
                 ]
             ],
             [
@@ -202,7 +202,7 @@
                         "target": "hND6",
                         "blocking": ""
                     },
-                    "treatment_mCherry_hND6_.vst.tsv:md5,c40ead85103bd6a650d7a4691d5fe8a2"
+                    "treatment_mCherry_hND6_.vst.tsv:md5,bf45f6bee6bbcaa217a69cf5f73e5466"
                 ],
                 [
                     {
@@ -212,7 +212,7 @@
                         "target": "hND6",
                         "blocking": "sample_number"
                     },
-                    "treatment_mCherry_hND6_sample_number.vst.tsv:md5,c40ead85103bd6a650d7a4691d5fe8a2"
+                    "treatment_mCherry_hND6_sample_number.vst.tsv:md5,bf45f6bee6bbcaa217a69cf5f73e5466"
                 ]
             ],
             [
@@ -238,14 +238,14 @@
                 ]
             ],
             [
-                "versions.yml:md5,71af5b7c85ff124058385ced412d5c66",
-                "versions.yml:md5,71af5b7c85ff124058385ced412d5c66"
+                "versions.yml:md5,8a7315a3a86f94037c477b992b190d5d",
+                "versions.yml:md5,8a7315a3a86f94037c477b992b190d5d"
             ],
             "treatment_mCherry_hND6_.pydeseq2.dispersion.png",
             "treatment_mCherry_hND6_.pydeseq2.dispersion.pdf",
             "treatment_mCherry_hND6_.pydeseq2.dds.h5ad"
         ],
-        "timestamp": "2026-06-23T13:57:14.958775",
+        "timestamp": "2026-07-06T19:03:18.604173",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.2"
@@ -272,7 +272,7 @@
                         "target": "hND6",
                         "blocking": "sample_number"
                     },
-                    "treatment_mCherry_hND6_sample_number.pydeseq2.results.tsv:md5,18760eae4353515f2f748158d5339726"
+                    "treatment_mCherry_hND6_sample_number.pydeseq2.results.tsv:md5,ad69c73c5e85e7b0801fe18c9aff3f52"
                 ]
             ],
             [
@@ -364,14 +364,14 @@
                 ]
             ],
             [
-                "versions.yml:md5,71af5b7c85ff124058385ced412d5c66",
-                "versions.yml:md5,71af5b7c85ff124058385ced412d5c66"
+                "versions.yml:md5,8a7315a3a86f94037c477b992b190d5d",
+                "versions.yml:md5,8a7315a3a86f94037c477b992b190d5d"
             ],
             "treatment_mCherry_hND6_.pydeseq2.dispersion.png",
             "treatment_mCherry_hND6_.pydeseq2.dispersion.pdf",
             "treatment_mCherry_hND6_.pydeseq2.dds.h5ad"
         ],
-        "timestamp": "2026-06-23T13:56:51.204723",
+        "timestamp": "2026-07-06T18:51:01.191666",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.2"
@@ -440,13 +440,13 @@
                 ]
             ],
             [
-                "versions.yml:md5,71af5b7c85ff124058385ced412d5c66"
+                "versions.yml:md5,8a7315a3a86f94037c477b992b190d5d"
             ],
             "treatment_mCherry_hND6_.pydeseq2.dispersion.png",
             "treatment_mCherry_hND6_.pydeseq2.dispersion.pdf",
             "treatment_mCherry_hND6_.pydeseq2.dds.h5ad"
         ],
-        "timestamp": "2026-06-23T13:57:24.091034",
+        "timestamp": "2026-07-06T19:04:13.416788",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.2"
@@ -565,14 +565,14 @@
                 ]
             ],
             [
-                "versions.yml:md5,71af5b7c85ff124058385ced412d5c66",
-                "versions.yml:md5,71af5b7c85ff124058385ced412d5c66"
+                "versions.yml:md5,8a7315a3a86f94037c477b992b190d5d",
+                "versions.yml:md5,8a7315a3a86f94037c477b992b190d5d"
             ],
             "treatment_mCherry_hND6_.pydeseq2.dispersion.png",
             "treatment_mCherry_hND6_.pydeseq2.dispersion.pdf",
             "treatment_mCherry_hND6_.pydeseq2.dds.h5ad"
         ],
-        "timestamp": "2026-06-23T13:57:03.143845",
+        "timestamp": "2026-07-06T19:02:17.845604",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.2"
@@ -587,7 +587,7 @@
                         "formula": "~ genotype",
                         "comparison": "genotype[T.WT]"
                     },
-                    "genotype_WT_vs_baseline.pydeseq2.results.tsv:md5,9ad5aa38169ba61f6a269998c93e404e"
+                    "genotype_WT_vs_baseline.pydeseq2.results.tsv:md5,3a838534cff9a8707b47c6de3a1d5d39"
                 ]
             ],
             [
@@ -607,7 +607,7 @@
                         "formula": "~ genotype",
                         "comparison": "genotype[T.WT]"
                     },
-                    "genotype_WT_vs_baseline.normalised_counts.tsv:md5,5efc9c2f22ce89a5f39a5694208cb7b3"
+                    "genotype_WT_vs_baseline.normalised_counts.tsv:md5,d3b9529be75b2559dea68e8523480c1b"
                 ]
             ],
             [
@@ -617,7 +617,7 @@
                         "formula": "~ genotype",
                         "comparison": "genotype[T.WT]"
                     },
-                    "genotype_WT_vs_baseline.vst.tsv:md5,eae57d3c9a08308d3a0ba31f6de87aec"
+                    "genotype_WT_vs_baseline.vst.tsv:md5,e733f04332b61abfcb58d46b1161613e"
                 ]
             ],
             [
@@ -631,13 +631,13 @@
                 ]
             ],
             [
-                "versions.yml:md5,71af5b7c85ff124058385ced412d5c66"
+                "versions.yml:md5,8a7315a3a86f94037c477b992b190d5d"
             ],
             "genotype_WT_vs_baseline.pydeseq2.dispersion.png",
             "genotype_WT_vs_baseline.pydeseq2.dispersion.pdf",
             "genotype_WT_vs_baseline.pydeseq2.dds.h5ad"
         ],
-        "timestamp": "2026-06-23T13:56:38.190672",
+        "timestamp": "2026-07-06T18:49:14.919533",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.2"
@@ -756,14 +756,14 @@
                 ]
             ],
             [
-                "versions.yml:md5,9c833b9289a93ecffd56a1a1c5a3bf69",
-                "versions.yml:md5,9c833b9289a93ecffd56a1a1c5a3bf69"
+                "versions.yml:md5,db9831783d4faceb6ae57d72dac6d907",
+                "versions.yml:md5,db9831783d4faceb6ae57d72dac6d907"
             ],
             "treatment_mCherry_hND6_.pydeseq2.dispersion.png",
             "treatment_mCherry_hND6_.pydeseq2.dispersion.pdf",
             "treatment_mCherry_hND6_.pydeseq2.dds.h5ad"
         ],
-        "timestamp": "2026-06-23T13:57:30.239569",
+        "timestamp": "2026-07-06T19:04:51.090502",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.2"
