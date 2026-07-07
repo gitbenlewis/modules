@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
-name: "deseq2_pydge"
+name: "deseq2_pydifferential"
 description: |
   Runs differential expression analysis with PyDESeq2. This module preserves the
   main input shape of deseq2/differential, but only emits honest PyDESeq2-native

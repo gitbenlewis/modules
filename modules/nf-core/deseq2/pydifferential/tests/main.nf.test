@@ -1,17 +1,17 @@
 nextflow_process {
 
-    name "Test Process DESEQ2_PYDGE"
+    name "Test Process DESEQ2_PYDIFFERENTIAL"
     script "../main.nf"
-    process "DESEQ2_PYDGE"
+    process "DESEQ2_PYDIFFERENTIAL"
 
     tag "modules"
     tag "modules_nfcore"
     tag "deseq2"
-    tag "deseq2/pydge"
+    tag "deseq2/pydifferential"
     tag "pydeseq2"
 
     test("mouse - contrasts - matrix") {
-        config './pydge_matrix.config'
+        config './pydifferential_matrix.config'
 
         when {
             process {
@@ -69,7 +69,7 @@ nextflow_process {
     }
 
     test("RNAseq - Feature Counts - formula coefficient") {
-        config './pydge_formula.config'
+        config './pydifferential_formula.config'
 
         when {
             process {
@@ -114,7 +114,7 @@ nextflow_process {
     }
 
     test("mouse - contrasts - matrix - control genes") {
-        config './pydge_control_genes.config'
+        config './pydifferential_control_genes.config'
 
         when {
             process {
@@ -161,7 +161,7 @@ nextflow_process {
     }
 
     test("mouse - contrasts - matrix - subset to contrast") {
-        config './pydge_subset_to_contrast.config'
+        config './pydifferential_subset_to_contrast.config'
 
         when {
             process {
@@ -205,7 +205,7 @@ nextflow_process {
     }
 
     test("mouse - contrasts - matrix - exclude samples") {
-        config './pydge_exclude_samples.config'
+        config './pydifferential_exclude_samples.config'
 
         when {
             process {
@@ -249,7 +249,7 @@ nextflow_process {
     }
 
     test("mouse - contrasts - matrix - csv counts") {
-        config './pydge_matrix.config'
+        config './pydifferential_matrix.config'
 
         when {
             process {
@@ -295,7 +295,7 @@ nextflow_process {
     }
 
     test("mouse - contrasts - matrix - stub") {
-        config './pydge_matrix.config'
+        config './pydifferential_matrix.config'
         options "-stub"
 
         when {
@@ -340,7 +340,7 @@ nextflow_process {
     }
 
     test("unsupported rlog fails clearly") {
-        config './pydge_rlog_unsupported.config'
+        config './pydifferential_rlog_unsupported.config'
 
         when {
             process {
@@ -364,7 +364,7 @@ nextflow_process {
     }
 
     test("mouse - contrasts - matrix - transcript lengths") {
-        config './pydge_matrix.config'
+        config './pydifferential_matrix.config'
 
         when {
             process {
@@ -393,7 +393,7 @@ nextflow_process {
     }
 
     test("unsupported shrink_lfc fails clearly") {
-        config './pydge_shrink_unsupported.config'
+        config './pydifferential_shrink_unsupported.config'
 
         when {
             process {
