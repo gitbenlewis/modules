@@ -61,6 +61,7 @@ nextflow_process {
                 { assert path(process.out.session_info[0][1]).text.contains('parametric_dispersion_min_disp_multiplier') },
                 { assert path(process.out.session_info[0][1]).text.contains('parametric_dispersion_genes_before_r_style_filter') },
                 { assert path(process.out.session_info[0][1]).text.contains('parametric_dispersion_genes_after_r_style_filter') },
+                { assert path(process.out.session_info[0][1]).text.contains('r_style_independent_filtering') },
                 { assert path(process.out.session_info[0][1]).text.contains('transcript_length_normalization_enabled') },
                 { assert path(process.out.versions[0]).yaml }
             )

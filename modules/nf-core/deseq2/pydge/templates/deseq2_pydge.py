@@ -27,6 +27,7 @@ from pydeseq2.default_inference import DefaultInference
 from pydeseq2.ds import DeseqStats
 from pydeseq2.preprocessing import deseq2_norm_fit
 from scipy.stats import f
+from scipy.stats import false_discovery_control
 
 
 ARGS = r'''${args}'''
@@ -75,6 +76,7 @@ DEFAULTS = {
     "parametric_dispersion_min_disp_multiplier": 100.0,
     "transcript_length_normalization": True,
     "transcript_length_normalization_policy": "error",
+    "r_style_independent_filtering": True,
 }
 
 TYPE_OVERRIDES = {
@@ -363,6 +365,56 @@ def record_dispersion_fit(dds, opt):
         if opt["dispersion_fallback_policy"] == "error":
             raise RuntimeError(message + " Set --dispersion_fallback_policy warn to allow this fallback.")
         print("WARNING: " + message, file=sys.stderr)
+
+
+def install_r_style_independent_filtering(stats, opt):
+    if not opt["r_style_independent_filtering"]:
+        opt["independent_filtering_method"] = "pydeseq2_native"
+        return
+
+    def _r_style_independent_filtering(self):
+        if not hasattr(self, "p_values"):
+            self.run_wald_test()
+
+        lower_quantile = np.mean(self.base_mean == 0)
+        upper_quantile = 0.95 if lower_quantile < 0.95 else 1
+        theta = np.linspace(lower_quantile, upper_quantile, 50)
+        cutoffs = np.quantile(self.base_mean, theta)
+
+        result = pd.DataFrame(np.nan, index=self.dds.var_names, columns=np.arange(len(theta)))
+        for i, cutoff in enumerate(cutoffs):
+            use = (self.base_mean >= cutoff) & (~self.p_values.isna())
+            p_values = self.p_values[use]
+            if not p_values.empty:
+                result.loc[use, i] = false_discovery_control(p_values, method="bh")
+
+        num_rej = (result < self.alpha).sum(axis=0).to_numpy().astype(int)
+        smoothed_rej = utils.lowess(theta, num_rej, frac=1 / 5)
+        if num_rej.max() <= 10:
+            selected_index = 0
+        else:
+            residual = num_rej[num_rej > 0] - smoothed_rej[num_rej > 0]
+            threshold = smoothed_rej.max() - np.sqrt(np.mean(residual**2))
+            candidates = np.where(num_rej > threshold)[0]
+            selected_index = int(candidates[0]) if len(candidates) else 0
+            crossover = np.where(
+                (np.arange(len(theta)) >= selected_index) & (smoothed_rej >= num_rej)
+            )[0]
+            if len(crossover):
+                selected_index = int(crossover[0])
+
+        self.padj = result.loc[:, selected_index]
+        opt["independent_filtering_method"] = "r_style_lowess_crossover"
+        opt["independent_filtering_lower_quantile"] = float(lower_quantile)
+        opt["independent_filtering_upper_quantile"] = float(upper_quantile)
+        opt["independent_filtering_selected_theta"] = float(theta[selected_index])
+        opt["independent_filtering_selected_cutoff"] = float(cutoffs[selected_index])
+        opt["independent_filtering_selected_index"] = int(selected_index)
+        opt["independent_filtering_num_rejections_at_alpha"] = int(num_rej[selected_index])
+        opt["independent_filtering_padj_non_na"] = int(self.padj.notna().sum())
+        opt["independent_filtering_padj_na"] = int(self.padj.isna().sum())
+
+    stats._independent_filtering = types.MethodType(_r_style_independent_filtering, stats)
 
 
 def read_transcript_lengths(opt, count_table):
@@ -911,6 +963,7 @@ def main():
         quiet=True,
         n_cpus=opt["cores"],
     )
+    install_r_style_independent_filtering(stats, opt)
     stats.summary()
 
     prefix = opt["output_prefix"]

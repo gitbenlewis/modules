@@ -13,7 +13,11 @@ description: |
   fail when configured with --dispersion_fallback_policy error. Parametric
   dispersion fitting applies an R DESeq2-style dispGeneEst > 100 * minDisp
   prefilter by default for nf-core parity; set --r_style_parametric_dispersion_fit
-  false to use PyDESeq2's native trend-fitting behavior.
+  false to use PyDESeq2's native trend-fitting behavior. Independent filtering
+  for adjusted p-values uses an R-style LOWESS crossover cutoff by default so
+  the padj non-NA universe better matches DESeq2::results(); set
+  --r_style_independent_filtering false to use PyDESeq2's native cutoff
+  heuristic.
 keywords:
   - differential
   - expression
