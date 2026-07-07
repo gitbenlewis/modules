@@ -1,17 +1,17 @@
 nextflow_process {
 
-    name "Test Process DESEQ2_PYDIFFERENTIAL"
+    name "Test Process PYDESEQ2_DIFFERENTIAL"
     script "../main.nf"
-    process "DESEQ2_PYDIFFERENTIAL"
+    process "PYDESEQ2_DIFFERENTIAL"
 
     tag "modules"
     tag "modules_nfcore"
     tag "deseq2"
-    tag "deseq2/pydifferential"
+    tag "pydeseq2/differential"
     tag "pydeseq2"
 
     test("mouse - contrasts - matrix") {
-        config './pydifferential_matrix.config'
+        config './pydeseq2_differential_matrix.config'
 
         when {
             process {
@@ -69,7 +69,7 @@ nextflow_process {
     }
 
     test("RNAseq - Feature Counts - formula coefficient") {
-        config './pydifferential_formula.config'
+        config './pydeseq2_differential_formula.config'
 
         when {
             process {
@@ -114,7 +114,7 @@ nextflow_process {
     }
 
     test("mouse - contrasts - matrix - control genes") {
-        config './pydifferential_control_genes.config'
+        config './pydeseq2_differential_control_genes.config'
 
         when {
             process {
@@ -161,7 +161,7 @@ nextflow_process {
     }
 
     test("mouse - contrasts - matrix - subset to contrast") {
-        config './pydifferential_subset_to_contrast.config'
+        config './pydeseq2_differential_subset_to_contrast.config'
 
         when {
             process {
@@ -205,7 +205,7 @@ nextflow_process {
     }
 
     test("mouse - contrasts - matrix - exclude samples") {
-        config './pydifferential_exclude_samples.config'
+        config './pydeseq2_differential_exclude_samples.config'
 
         when {
             process {
@@ -249,7 +249,7 @@ nextflow_process {
     }
 
     test("mouse - contrasts - matrix - csv counts") {
-        config './pydifferential_matrix.config'
+        config './pydeseq2_differential_matrix.config'
 
         when {
             process {
@@ -295,7 +295,7 @@ nextflow_process {
     }
 
     test("mouse - contrasts - matrix - stub") {
-        config './pydifferential_matrix.config'
+        config './pydeseq2_differential_matrix.config'
         options "-stub"
 
         when {
@@ -340,7 +340,7 @@ nextflow_process {
     }
 
     test("unsupported rlog fails clearly") {
-        config './pydifferential_rlog_unsupported.config'
+        config './pydeseq2_differential_rlog_unsupported.config'
 
         when {
             process {
@@ -364,7 +364,7 @@ nextflow_process {
     }
 
     test("mouse - contrasts - matrix - transcript lengths") {
-        config './pydifferential_matrix.config'
+        config './pydeseq2_differential_matrix.config'
 
         when {
             process {
@@ -393,7 +393,7 @@ nextflow_process {
     }
 
     test("unsupported shrink_lfc fails clearly") {
-        config './pydifferential_shrink_unsupported.config'
+        config './pydeseq2_differential_shrink_unsupported.config'
 
         when {
             process {

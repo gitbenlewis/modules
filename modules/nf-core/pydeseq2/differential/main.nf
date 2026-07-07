@@ -1,4 +1,4 @@
-process DESEQ2_PYDIFFERENTIAL {
+process PYDESEQ2_DIFFERENTIAL {
     tag "$meta.id"
     label 'process_single'
 
@@ -32,7 +32,7 @@ process DESEQ2_PYDIFFERENTIAL {
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
     args = task.ext.args ?: ''
-    template 'deseq2_pydifferential.py'
+    template 'pydeseq2_differential.py'
 
     stub:
     prefix = task.ext.prefix ?: "${meta.id}"
