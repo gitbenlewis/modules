@@ -25,13 +25,14 @@ process PYDESEQ2_DIFFERENTIAL {
     tuple val(meta), path("*.pydeseq2.model.txt")          , emit: model
     tuple val(meta), path("*.Python_sessionInfo.log")      , emit: session_info
     path "versions.yml"                                    , emit: versions, topic: versions
+    tuple val(meta), path("*.pydeseq2.runtime.tsv")        , optional: true, emit: runtime
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
-    args = task.ext.args ?: ''
+    args = "${task.ext.args ?: ''} --cores ${task.cpus}"
     template 'pydeseq2_differential.py'
 
     stub:

@@ -5,8 +5,10 @@ import platform
 import re
 import shlex
 import sys
+import time
 import types
 import warnings
+from contextlib import contextmanager
 from importlib.metadata import PackageNotFoundError
 from importlib.metadata import version
 from pathlib import Path
@@ -77,7 +79,22 @@ DEFAULTS = {
     "transcript_length_normalization": True,
     "transcript_length_normalization_policy": "error",
     "r_style_independent_filtering": True,
+    "profile_runtime": False,
 }
+
+PROFILED_DDS_METHODS = (
+    "fit_size_factors",
+    "fit_genewise_dispersions",
+    "fit_dispersion_trend",
+    "_fit_parametric_dispersion_trend",
+    "fit_dispersion_prior",
+    "fit_MAP_dispersions",
+    "fit_LFC",
+    "calculate_cooks",
+    "refit",
+    "cooks_outlier",
+)
+PROFILE_TIMING_SEMANTICS = "inclusive; rows may overlap and must not be summed"
 
 TYPE_OVERRIDES = {
     "round_digits": int,
@@ -896,12 +913,53 @@ def write_session_info(opt):
         handle.write("\\n")
 
 
+@contextmanager
+def profile_methods(target, runtime_profile, method_names, prefix):
+    originals = {}
+    for method_name in method_names:
+        original = getattr(target, method_name)
+        originals[method_name] = original
+        timer_name = f"{prefix}_{method_name.lstrip('_')}"
+
+        def timed_method(self, *args, _original=original, _timer_name=timer_name, **kwargs):
+            start = time.perf_counter()
+            try:
+                return _original(*args, **kwargs)
+            finally:
+                record = runtime_profile.setdefault(_timer_name, {"elapsed_seconds": 0.0, "call_count": 0})
+                record["elapsed_seconds"] += time.perf_counter() - start
+                record["call_count"] += 1
+
+        setattr(target, method_name, types.MethodType(timed_method, target))
+
+    try:
+        yield
+    finally:
+        for method_name, original in originals.items():
+            setattr(target, method_name, original)
+
+
+def write_runtime_profile(opt, runtime_profile):
+    rows = [
+        {
+            "step": step,
+            "elapsed_seconds": record["elapsed_seconds"],
+            "call_count": record["call_count"],
+            "timing_semantics": PROFILE_TIMING_SEMANTICS,
+        }
+        for step, record in sorted(runtime_profile.items())
+    ]
+    write_tsv(pd.DataFrame(rows), f"{opt['output_prefix']}.pydeseq2.runtime.tsv")
+
+
 def main():
+    runtime_profile = {}
     opt = DEFAULTS.copy()
     opt.update(parse_ext_args(ARGS))
     for key in ("formula", "contrast_string", "contrast_variable", "reference_level", "target_level", "seed"):
         opt[key] = nullify(opt[key])
     validate_options(opt)
+    script_start = time.perf_counter() if opt["profile_runtime"] else None
 
     if opt["seed"] is not None:
         np.random.seed(opt["seed"])
@@ -946,7 +1004,16 @@ def main():
     )
     install_transcript_length_normalization(dds, normalization_factors, sample_size_factors, opt)
     install_r_style_parametric_dispersion_fit(dds, opt)
-    dds.deseq2()
+    if opt["profile_runtime"]:
+        with profile_methods(dds, runtime_profile, PROFILED_DDS_METHODS, "core_dds"):
+            fit_start = time.perf_counter()
+            dds.deseq2()
+            runtime_profile["core_dds_deseq2"] = {
+                "elapsed_seconds": time.perf_counter() - fit_start,
+                "call_count": 1,
+            }
+    else:
+        dds.deseq2()
     record_dispersion_fit(dds, opt)
 
     if contrast is None:
@@ -964,12 +1031,21 @@ def main():
         n_cpus=opt["cores"],
     )
     install_r_style_independent_filtering(stats, opt)
-    stats.summary()
+    if opt["profile_runtime"]:
+        with profile_methods(stats, runtime_profile, ("_independent_filtering",), "stats"):
+            stats_start = time.perf_counter()
+            stats.summary()
+            runtime_profile["stats_summary"] = {
+                "elapsed_seconds": time.perf_counter() - stats_start,
+                "call_count": 1,
+            }
+    else:
+        stats.summary()
 
     prefix = opt["output_prefix"]
-    results = round_numeric(stats.results_df.copy(), opt["round_digits"])
-    results.insert(0, opt["gene_id_col"], results.index)
-    write_tsv(results.reset_index(drop=True), f"{prefix}.pydeseq2.results.tsv")
+    results = round_numeric(stats.results_df, opt["round_digits"])
+    results = results.reset_index(names=opt["gene_id_col"])
+    write_tsv(results, f"{prefix}.pydeseq2.results.tsv")
 
     dds.plot_dispersions(save_path=f"{prefix}.pydeseq2.dispersion.png")
     plt.close("all")
@@ -1004,7 +1080,16 @@ def main():
     write_tsv(normalised, f"{prefix}.normalised_counts.tsv")
 
     if "vst" in {method.strip() for method in str(opt["vs_method"]).split(",")}:
-        dds.vst(use_design=not opt["vs_blind"], fit_type=opt["fit_type"])
+        if opt["profile_runtime"]:
+            with profile_methods(dds, runtime_profile, PROFILED_DDS_METHODS, "vst_dds"):
+                vst_start = time.perf_counter()
+                dds.vst(use_design=not opt["vs_blind"], fit_type=opt["fit_type"])
+                runtime_profile["vst_dds_vst"] = {
+                    "elapsed_seconds": time.perf_counter() - vst_start,
+                    "call_count": 1,
+                }
+        else:
+            dds.vst(use_design=not opt["vs_blind"], fit_type=opt["fit_type"])
         vst = matrix_to_output(
             dds.layers["vst_counts"],
             dds.var_names,
@@ -1015,6 +1100,18 @@ def main():
         write_tsv(vst, f"{prefix}.vst.tsv")
 
     Path(f"{prefix}.pydeseq2.model.txt").write_text(model + "\\n", encoding="utf-8")
+    opt["runtime_profile_enabled"] = opt["profile_runtime"]
+    opt["runtime_context"] = (
+        f"{PROFILE_TIMING_SEMANTICS}; core_dds_*, stats_*, and vst_dds_* methods are instrumented only "
+        "within their named phase and restored afterward; script_total excludes runtime, session-info, and version-file "
+        "writing; all timings exclude Nextflow scheduling and conda/container setup."
+    )
+    if opt["profile_runtime"]:
+        runtime_profile["script_total"] = {
+            "elapsed_seconds": time.perf_counter() - script_start,
+            "call_count": 1,
+        }
+        write_runtime_profile(opt, runtime_profile)
     write_session_info(opt)
     write_versions()
 

@@ -39,6 +39,7 @@ nextflow_process {
                 { assert process.success },
                 { assert path(process.out.results[0][1]).text.readLines()[0].startsWith('gene_id\tbaseMean') },
                 { assert path(process.out.size_factors[0][1]).text.readLines()[0] == 'sample\tsizeFactor' },
+                { assert process.out.runtime.size() == 0 },
                 { assert path(process.out.normalised_counts[0][1]).text.readLines()[0].startsWith('gene_id\t') },
                 { assert path(process.out.vst_counts[0][1]).exists() },
                 { assert snapshot(
@@ -63,7 +64,74 @@ nextflow_process {
                 { assert path(process.out.session_info[0][1]).text.contains('parametric_dispersion_genes_after_r_style_filter') },
                 { assert path(process.out.session_info[0][1]).text.contains('r_style_independent_filtering') },
                 { assert path(process.out.session_info[0][1]).text.contains('transcript_length_normalization_enabled') },
+                { assert path(process.out.session_info[0][1]).text.contains('"runtime_profile_enabled": false') },
                 { assert path(process.out.versions[0]).yaml }
+            )
+        }
+    }
+
+    test("mouse - contrasts - matrix - runtime profile") {
+        config './pydeseq2_differential_matrix.config'
+
+        when {
+            process {
+                """
+                expression_test_data_dir = params.modules_testdata_base_path + 'genomics/mus_musculus/rnaseq_expression/'
+
+                ch_contrasts = Channel.fromPath(file(expression_test_data_dir + 'SRP254919.contrasts.csv', checkIfExists: true))
+                    .splitCsv(header: true, sep: ',')
+                    .take(1)
+                    .flatMap {
+                        def unprofiled_meta = it + [id: it.id + '_unprofiled', profile_mode: 'unprofiled']
+                        def profiled_meta = it + [
+                            id: it.id + '_profiled',
+                            profile_mode: 'profiled',
+                            blocking: it.blocking + ' --profile_runtime true --cores 99'
+                        ]
+                        [
+                            tuple(unprofiled_meta, unprofiled_meta.variable, unprofiled_meta.reference, unprofiled_meta.target, unprofiled_meta.formula, unprofiled_meta.comparison),
+                            tuple(profiled_meta, profiled_meta.variable, profiled_meta.reference, profiled_meta.target, profiled_meta.formula, profiled_meta.comparison)
+                        ]
+                    }
+
+                input[0] = ch_contrasts
+                input[1] = [
+                    [id: 'test'],
+                    file(expression_test_data_dir + 'SRP254919.samplesheet.csv', checkIfExists: true),
+                    file(expression_test_data_dir + 'SRP254919.salmon.merged.gene_counts.top1000cov.tsv', checkIfExists: true)
+                ]
+                input[2] = [[], []]
+                input[3] = [[], []]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.runtime.size() == 1 },
+                { assert path(process.out.runtime[0][1]).text.readLines()[0] == 'step\telapsed_seconds\tcall_count\ttiming_semantics' },
+                { assert path(process.out.runtime[0][1]).text.readLines().find { it.startsWith('core_dds_fit_genewise_dispersions\t') }.split('\t')[2] == '1' },
+                { assert path(process.out.runtime[0][1]).text.readLines().find { it.startsWith('vst_dds_fit_genewise_dispersions\t') }.split('\t')[2] == '1' },
+                { assert path(process.out.runtime[0][1]).text.contains('inclusive; rows may overlap and must not be summed') },
+                {
+                    def scientific_outputs = [
+                        process.out.results,
+                        process.out.size_factors,
+                        process.out.normalised_counts,
+                        process.out.vst_counts,
+                        process.out.model
+                    ]
+                    scientific_outputs.each { output ->
+                        def by_mode = output.collectEntries { [(it[0].profile_mode): path(it[1]).text] }
+                        assert by_mode.unprofiled == by_mode.profiled
+                    }
+                },
+                {
+                    def profiled_session = process.out.session_info.find { it[0].profile_mode == 'profiled' }
+                    assert path(profiled_session[1]).text.contains('"cores": 2')
+                    assert path(profiled_session[1]).text.contains('"runtime_profile_enabled": true')
+                }
             )
         }
     }

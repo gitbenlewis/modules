@@ -5,12 +5,12 @@ nextflow.enable.dsl = 2
 include { DESEQ2_DIFFERENTIAL } from '../../../../deseq2/differential/main.nf'
 include { PYDESEQ2_DIFFERENTIAL } from '../../main.nf'
 
-params.input_dir = "work/pasilla_reference"
-params.outdir = "work/nfcore_pasilla"
-params.counts = "${params.input_dir}/pasilla_counts.tsv"
-params.samples = "${params.input_dir}/pasilla_samples.tsv"
-params.r_contrasts = "${params.input_dir}/pasilla_contrasts_r.tsv"
-params.pydeseq2_contrasts = "${params.input_dir}/pasilla_contrasts_pydeseq2.tsv"
+params.input_dir = "work/pickrell_reference"
+params.outdir = "work/nfcore_pickrell"
+params.counts = "${params.input_dir}/pickrell_counts.tsv"
+params.samples = "${params.input_dir}/pickrell_samples.tsv"
+params.r_contrasts = "${params.input_dir}/pickrell_contrasts_r.tsv"
+params.pydeseq2_contrasts = "${params.input_dir}/pickrell_contrasts_pydeseq2.tsv"
 params.cpus = 1
 params.implementation = "both"
 
@@ -20,12 +20,12 @@ workflow {
     }
 
     r_input = [
-        [id: 'pasilla'],
+        [id: 'pickrell'],
         file(params.samples, checkIfExists: true),
         file(params.counts, checkIfExists: true),
     ]
     pydeseq2_input = [
-        [id: 'pasilla'],
+        [id: 'pickrell'],
         file(params.samples, checkIfExists: true),
         file(params.counts, checkIfExists: true),
     ]
